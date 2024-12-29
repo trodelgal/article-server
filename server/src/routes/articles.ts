@@ -24,6 +24,27 @@ router.get("/:id", async (req: Request, res: Response) => {
   }
 });
 
+router.get("/find/:str", async (req: Request, res: Response) => {
+  try {
+    const str = req.params.str;
+    const articles: IArticle[] = await Article.find();
+    let arr = [];
+    articles.forEach((article: IArticle) => {
+      let indexes = [];
+      let index = article.content.indexOf(str);
+      while (index !== -1) {
+        indexes.push(index);
+        index = article.content.indexOf(str, index + 1); // Search from the next position
+      }
+      if (indexes.length > 0) {
+        arr.push({ article_id: article.id, offsets: indexes });
+      }
+    });
+  } catch (error: unknown) {
+    errorHandler(error, req, res);
+  }
+});
+
 router.post("/", async (req: Request, res: Response) => {
   try {
     const article = new Article(req.body);
