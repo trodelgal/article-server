@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import { IArticle } from "../types";
 
 const ArticleSchema = new Schema({
@@ -20,7 +20,7 @@ const ArticleSchema = new Schema({
   },
   updated_at: {
     type: Date,
-    defaultValue: new Date().getDate(),
+    defaultValue: new Date(),
   },
   deleted_at: {
     type: Date,

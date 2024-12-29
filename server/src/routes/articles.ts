@@ -1,11 +1,12 @@
 import { Router, Request, Response } from "express";
 import { Article } from "../models";
 import { errorHandler } from "../helper";
+import { IArticle } from "../types";
 
 const router = Router();
 router.get("/", async (req: Request, res: Response) => {
   try {
-    const articles = await Article.find();
+    const articles: IArticle[] = await Article.find();
     res.status(200).json(articles);
   } catch (error: unknown) {
     errorHandler(error, req, res);
@@ -14,7 +15,7 @@ router.get("/", async (req: Request, res: Response) => {
 
 router.get("/:id", async (req: Request, res: Response) => {
   try {
-    const article = await Article.findById(req.params.id);
+    const article: IArticle | null = await Article.findById(req.params.id);
     article
       ? res.status(200).json(article)
       : res.status(404).json("Id not found");

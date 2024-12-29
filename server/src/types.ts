@@ -4,7 +4,7 @@ export interface IArticle extends Document {
   author: string;
   created_at: Date;
   updated_at: Date;
-  deleted_at?: Date; // Optional field for soft delete
+  deleted_at?: Date; // Soft delete
 }
 
 export interface IUser extends Document {
@@ -20,5 +20,5 @@ export interface IComment extends Document {
   content: string;
   created_at: Date;
   updated_at: Date;
-  deleted_at?: Date; // Optional field
+  deleted_at?: Date; // Soft delete
 }

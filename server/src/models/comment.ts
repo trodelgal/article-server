@@ -20,7 +20,6 @@ const CommentSchema = new Schema({
   },
   deleted_at: {
     type: Date,
-    required: false,
   },
 });
 
