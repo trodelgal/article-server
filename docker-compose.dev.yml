@@ -10,7 +10,7 @@ services:
     build:
       context: ./server # Build the server image from the server directory
       dockerfile: Dockerfile
-      target: production # Target the production stage in the Dockerfile
+      target: development # Target the production stage in the Dockerfile
     # restart: always # always restart the container
     environment:
       - MONGO_URL=mongodb://mongo:27017/articlesDB
@@ -21,7 +21,10 @@ services:
       - 8000
     depends_on:
       - "mongo"
-    command: npm run start
+    volumes:
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm run dev
 
 volumes:
   mongo_data:
