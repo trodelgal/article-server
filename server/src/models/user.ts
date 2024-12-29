@@ -1,5 +1,7 @@
-import mongoose, { Schema } from "mongoose";
-export const UserSchema = new Schema({
+import mongoose, { Schema, Document } from "mongoose";
+import { IUser } from "../types";
+
+const UserSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -9,9 +11,23 @@ export const UserSchema = new Schema({
     required: true,
     unique: true,
   },
-  password: {
-    type: String,
-    required: true,
+  created_at: {
+    type: Date,
+    defaultValue: new Date(),
+  },
+  updated_at: {
+    type: Date,
+    defaultValue: new Date(),
+  },
+  deleted_at: {
+    type: Date,
   },
 });
-export const User = mongoose.model("User", UserSchema);
+
+// Middleware to update `updated_at` before saving
+UserSchema.pre("save", function (next) {
+  this.created_at = new Date(); // Update `updated_at` to the current time
+  next();
+});
+
+export const User = mongoose.model<IUser>("User", UserSchema);

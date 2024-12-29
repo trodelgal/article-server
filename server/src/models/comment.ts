@@ -1,5 +1,7 @@
 import mongoose, { Schema } from "mongoose";
-export const CommentSchema = new Schema({
+import { IComment } from "../types";
+
+const CommentSchema = new Schema({
   articleId: {
     type: String,
     required: true,
@@ -8,5 +10,24 @@ export const CommentSchema = new Schema({
     type: String,
     required: true,
   },
+  created_at: {
+    type: Date,
+    defaultValue: new Date(),
+  },
+  updated_at: {
+    type: Date,
+    defaultValue: new Date(),
+  },
+  deleted_at: {
+    type: Date,
+    required: false,
+  },
 });
-export const Comment = mongoose.model("Comment", CommentSchema);
+
+// Middleware to update `updated_at` before saving
+CommentSchema.pre("save", function (next) {
+  this.created_at = new Date(); // Update `updated_at` to the current time
+  next();
+});
+
+export const Comment = mongoose.model<IComment>("Comment", CommentSchema);
