@@ -13,4 +13,4 @@ export const ArticleSchema = new Schema({
     required: true,
   },
 });
-export const Article = mongoose.model("article", ArticleSchema);
+export const Article = mongoose.model("Article", ArticleSchema);
