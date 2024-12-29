@@ -2,12 +2,9 @@ import { Router, Request, Response } from "express";
 import { Comment } from "../models";
 import { Article } from "../models";
 import { errorHandler } from "../helper";
-import { methodNotAllowed } from "../middleware";
 import { IArticle, IComment } from "../types";
 
 const router = Router();
-
-router.use(methodNotAllowed(["GET", "POST"]));
 
 router.get("/", async (req: Request, res: Response) => {
   try {

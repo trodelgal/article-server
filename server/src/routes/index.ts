@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { methodNotAllowed } from "../middleware";
+import { methodNotAllowed } from "../middleware/errorHandle";
 import userRouter from "./users";
 import commentsRouter from "./comments";
 import articlesRouter from "./articles";
