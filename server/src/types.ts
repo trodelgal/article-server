@@ -17,7 +17,7 @@ export interface IUser extends Document {
 }
 
 export interface IComment extends Document {
-  articleId: string;
+  article_id: string;
   content: string;
   created_at: Date;
   updated_at: Date;

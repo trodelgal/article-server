@@ -30,13 +30,13 @@ router.get("/:id", async (req: Request, res: Response) => {
 router.post("/", async (req: Request, res: Response) => {
   try {
     const comment = new Comment(req.body);
-    const article: IArticle | null = await Article.findById(comment.articleId);
+    const article: IArticle | null = await Article.findById(comment.article_id);
     if (!article) {
-      res.status(404).json("Article not found");
+      res.status(404).json({ error: "Article not found" });
       return;
     }
     await comment.save();
-    res.json("Comment created successfully with id:" + comment.id);
+    res.status(201).json("Comment created successfully with id:" + comment.id);
   } catch (error: unknown) {
     errorHandler(error, req, res);
   }

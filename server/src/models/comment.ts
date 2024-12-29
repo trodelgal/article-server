@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 import { IComment } from "../types";
 
 const CommentSchema = new Schema({
-  articleId: {
+  article_id: {
     type: String,
     required: true,
   },
