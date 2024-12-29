@@ -1,0 +1,8 @@
+services:
+  api-server:
+    build:
+      context: ./server # Build the server image from the server directory
+      dockerfile: Dockerfile
+      target: production # Target the production stage in the Dockerfile
+    volumes: [] # Disable the volume in this environment
+    command: npm run start

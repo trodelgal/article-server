@@ -1,0 +1,30 @@
+services:
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db # Persistent data storage for MongoDB
+
+  api-server:
+    build:
+      context: ./server # Build the server image from the server directory
+      dockerfile: Dockerfile
+      target: development # Target the production stage in the Dockerfile
+    # restart: always # always restart the container
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/articlesDB
+      - PORT=8000
+    ports:
+      - "8000:8000" # host:container
+    expose:
+      - 8000
+    depends_on:
+      - "mongo"
+    volumes:
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm run dev
+
+volumes:
+  mongo_data:
