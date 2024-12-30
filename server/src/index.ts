@@ -11,7 +11,7 @@ const mongoURI = process.env.MONGO_URL || ""; // Change this to your MongoDB URI
 
 mongoose
   .connect(mongoURI)
-  .then(() => console.log("MongoDB connected"))
+  .then(() => console.log("MongoDB connected: ", mongoURI))
   .catch((err) => console.log(err));
 
 app.listen(PORT, () => {

@@ -11,9 +11,8 @@ services:
       context: ./server # Build the server image from the server directory
       dockerfile: Dockerfile
       target: production # Target the production stage in the Dockerfile
-    # restart: always # always restart the container
     environment:
-      - MONGO_URL=mongodb://mongo:27017/articlesDB
+      - MONGO_URL=mongodb://mongo:27017/articlesDB-prod
       - PORT=8000
     ports:
       - "8000:8000" # host:container

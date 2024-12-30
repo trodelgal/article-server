@@ -5,7 +5,7 @@ FROM node:20-alpine AS development
 WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json
-COPY package*.json tsconfig.json ./
+COPY package*.json tsconfig.json jest.config.json ./
 
 # Install dependencies
 RUN npm install

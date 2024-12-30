@@ -53,7 +53,7 @@ router.post("/", async (req: Request, res: Response) => {
   try {
     const article = new Article(req.body);
     await article.save();
-    res.status(201).json("User created successfully with id:" + article.id);
+    res.status(201).json("Article created successfully with id:" + article.id);
   } catch (error: unknown) {
     errorHandler(error, req, res);
   }
