@@ -10,7 +10,7 @@ services:
     build:
       context: ./server # Build the server image from the server directory
       dockerfile: Dockerfile
-      target: development # Target the production stage in the Dockerfile
+      target: development # Target the development stage in the Dockerfile
     environment:
       - MONGO_URL=mongodb://mongo:27017/articlesDB-dev
       - PORT=8000
