@@ -23,3 +23,8 @@ export interface IComment extends Document {
   updated_at: Date;
   deleted_at?: Date; // Soft delete
 }
+
+export interface IFind {
+  article_id: string;
+  offsets: number[];
+}

@@ -6,9 +6,7 @@ export const routeNotFound = (
   next: NextFunction
 ) => {
   res.status(404).json({
-    error: {
-      message: "Not found",
-    },
+    error: "Route not found",
   });
 };
 

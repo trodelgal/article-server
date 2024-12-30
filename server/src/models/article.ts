@@ -27,4 +27,10 @@ const ArticleSchema = new Schema({
   },
 });
 
+// Middleware to update `created_at` before saving
+ArticleSchema.pre("save", function (next) {
+  this.created_at = new Date();
+  next();
+});
+
 export const Article = mongoose.model<IArticle>("Article", ArticleSchema);

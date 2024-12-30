@@ -18,7 +18,9 @@ router.get("/", async (req: Request, res: Response) => {
 router.get("/:id", async (req: Request, res: Response) => {
   try {
     const comment: IComment | null = await Comment.findById(req.params.id);
-    comment ? res.json(comment) : res.status(404).json("Id not found");
+    comment
+      ? res.json(comment)
+      : res.status(404).json({ error: "Id not found" });
   } catch (error: unknown) {
     errorHandler(error, req, res);
   }
@@ -29,7 +31,9 @@ router.post("/", async (req: Request, res: Response) => {
     const comment = new Comment(req.body);
     const article: IArticle | null = await Article.findById(comment.article_id);
     if (!article) {
-      res.status(404).json({ error: "Article not found" });
+      res
+        .status(404)
+        .json({ error: "Comment must be related to an existing article" });
       return;
     }
     await comment.save();

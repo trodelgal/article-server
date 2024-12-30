@@ -24,9 +24,9 @@ const UserSchema = new Schema({
   },
 });
 
-// Middleware to update `updated_at` before saving
+// Middleware to update `created_at` before saving
 UserSchema.pre("save", function (next) {
-  this.created_at = new Date(); // Update `updated_at` to the current time
+  this.created_at = new Date();
   next();
 });
 

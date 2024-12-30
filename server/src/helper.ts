@@ -10,6 +10,9 @@ export const errorHandler = (error: unknown, req: Request, res: Response) => {
       case "CastError":
         res.status(404).json({ error: "Id not found" });
         break;
+      case "MongoServerError":
+        res.status(409).json({ error: error.message });
+        break;
       default:
         res.status(500).json({ error: error.message });
     }
