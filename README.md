@@ -12,6 +12,31 @@
 
 ![ERD](./pic/erd.png)
 
+## **End Points**
+
+### **Users**
+
+- **GET** `/users` - Retrieve all users.
+- **GET** `/users/:id` - Retrieve a specific user by ID.
+- **POST** `/users` - Create a new user.
+
+---
+
+### **Comments**
+
+- **GET** `/comments` - Retrieve all comments.
+- **GET** `/comments/:id` - Retrieve a specific comment by ID.
+- **POST** `/comments` - Create a new comment.
+
+---
+
+### **Articles**
+
+- **GET** `/articles` - Retrieve all articles.
+- **GET** `/articles/:id` - Retrieve a specific article by ID.
+- **GET** `/articles/find/:str` - Find a specific string within the body of articles.
+- **POST** `/articles` - Create a new article.
+
 ## Getting Started:
 
 ### Assigment Checkers:
