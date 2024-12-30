@@ -7,6 +7,7 @@
 - **Mongo DB**
 - **Docker**
 - **Docker Compose**
+- **Jest**
 
 ## Database:
 
@@ -53,9 +54,13 @@ To start the application in development mode, use the following command:
 - `docker-compose -f docker-compose.dev.yml up`
   This uses the docker-compose.dev.yml file, which is typically configured for hot-reloading and development optimizations.
 
+  To run the test: Enter the development container and ren `npm run test`
+
 ## libraries:
 
 - **dotenv**
 - **express**
 - **mongoose**
 - **morgan**
+- **Jest**
+- **Supertest**
