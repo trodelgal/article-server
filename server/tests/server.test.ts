@@ -113,7 +113,6 @@ describe("Articles API", () => {
 
   it("should find a string in some article content", async () => {
     const response = await request(app).get(`/articles/find/i`);
-    console.log(response.body);
     expect(response.status).toBe(200);
     expect(response.body.length).toEqual(3);
   });
@@ -166,6 +165,8 @@ describe("Comments API", () => {
     };
     const createdComment = await request(app).post("/comments").send(comment);
     expect(createdComment.status).toBe(404);
-    expect(createdComment.body.error).toBe("Id not found");
+    expect(createdComment.body.error).toBe(
+      "Comment must be related to an existing article"
+    );
   });
 });

@@ -29,8 +29,11 @@ router.get("/:id", async (req: Request, res: Response) => {
 router.post("/", async (req: Request, res: Response) => {
   try {
     const comment = new Comment(req.body);
-    const article: IArticle | null = await Article.findById(comment.article_id);
-    if (!article) {
+    try {
+      const article: IArticle | null = await Article.findById(
+        comment.article_id
+      );
+    } catch (error: unknown) {
       res
         .status(404)
         .json({ error: "Comment must be related to an existing article" });
